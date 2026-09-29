@@ -1,0 +1,12 @@
+{
+  "name": "면적 변환기",
+  "short_name": "면적 변환기",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f3ed",
+  "theme_color": "#f7f3ed",
+  "lang": "ko",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

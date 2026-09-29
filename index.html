@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f3ed">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="면적 변환기">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>면적 변환기</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;background:#f7f3ed;color:#292722;display:flex;justify-content:center;align-items:center;padding:24px}.app{width:100%;max-width:430px}.title{text-align:center;margin-bottom:22px}.title h1{margin:0 0 7px;font-size:29px;letter-spacing:-1px}.title p{margin:0;color:#77716a;font-size:14px}.card{background:#fff;border-radius:24px;padding:24px;box-shadow:0 8px 30px rgba(50,43,34,.08)}label{display:block;font-size:14px;font-weight:700;color:#655f58;margin-bottom:9px}.input-wrap{display:flex;align-items:center;border:2px solid #ddd7cf;border-radius:16px;padding:0 16px}.input-wrap:focus-within{border-color:#9b8975}input{width:100%;border:0;outline:0;padding:15px 0;font-size:24px;font-weight:700;background:transparent;color:#292722}.unit{font-size:16px;font-weight:700;color:#77716a}.results{margin-top:22px;display:grid;gap:12px}.result{background:#f8f6f2;border-radius:17px;padding:17px 18px}.result .label{margin:0 0 5px;font-size:13px;color:#817a72}.value{font-size:26px;font-weight:800;letter-spacing:-.5px}.value span{font-size:16px;font-weight:700;color:#716b64;margin-left:4px}.clear{width:100%;margin-top:16px;padding:13px;border:0;border-radius:14px;background:#ece7df;color:#625c54;font-size:14px;font-weight:700}.hint{text-align:center;margin:18px 0 0;color:#9a938b;font-size:12px}
+</style></head>
+<body><main class="app"><div class="title"><h1>면적 변환기</h1><p>Square Foot → ㎡ · 평</p></div><section class="card">
+<label for="sqft">Square Foot</label><div class="input-wrap"><input id="sqft" type="number" inputmode="decimal" step="any" placeholder="숫자를 입력하세요"><div class="unit">ft²</div></div>
+<div class="results"><div class="result"><div class="label">Square Meter</div><div class="value" id="sqm">— <span>㎡</span></div></div><div class="result"><div class="label">한국 평</div><div class="value" id="pyeong">— <span>평</span></div></div></div>
+<button class="clear" id="clear">초기화</button><p class="hint">숫자를 입력하면 두 단위가 바로 계산됩니다.</p>
+</section></main>
+<script>
+const input=document.getElementById("sqft"),sqm=document.getElementById("sqm"),pyeong=document.getElementById("pyeong");
+function f(n){return n.toLocaleString("ko-KR",{maximumFractionDigits:2})}
+function convert(){const v=parseFloat(input.value);if(!Number.isFinite(v)){sqm.innerHTML="— <span>㎡</span>";pyeong.innerHTML="— <span>평</span>";return}const m=v*.09290304;sqm.innerHTML=f(m)+" <span>㎡</span>";pyeong.innerHTML=f(m/3.305785124)+" <span>평</span>"}
+input.addEventListener("input",convert);document.getElementById("clear").onclick=()=>{input.value="";convert();input.focus()};input.focus();
+</script></body></html>
